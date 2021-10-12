@@ -1,3 +1,43 @@
+如何安装？
+母:apt install docker -y  子:apt install python3 -y
+母:有防火墙或宝塔就先放行35601
+docker pull cppla/serverstatus:latest
+拉配置文件 自己改 wget https://raw.githubusercontent.com/cppla/ServerStatus/master/autodeploy/config.json
+docker run -d --restart=always --name=serverstatus -v 你刚刚放配置文件的路径/config.json:/ServerStatus/server/config.json -p 外部端口稍后反代用:80 -p 35601:35601 cppla/serverstatus:latest
+
+母：域名自己反代到刚刚的外部端口
+
+然后下好clients目录下的client-linux.py 改好配置
+子:放改好的py到目录下 nohup python3 client-linux.py &   即可在后台运行
+母:重启下docker就出来了 docker ps 拿到CONTAINER那个id 
+然后docker restart id
+出来了
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ServerStatus中文版：   
 
 * ServerStatus中文版是一个酷炫高逼格的云探针、云监控、服务器云监控、多服务器探针~。
